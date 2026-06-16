@@ -4,9 +4,7 @@ meta:
     name: npm
     version: 20
 build:
-  requirements:
-    - backend/package.json
   commands:
-    - cd backend && npm install
+    - npm install --prefix backend
 run:
-  command: cd backend && npm run dev
+  command: npm run dev --prefix backend
