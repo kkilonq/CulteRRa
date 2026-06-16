@@ -22,10 +22,10 @@ export default function EditExhibitPage() {
 
  const BASE_URL = 'https://culterra-back-kkilonq.amvera.io';
 
-  useEffect(() => {
+ useEffect(() => {
     fetch(`${BASE_URL}/api/exhibition?limit=100`)
       .then((res) => res.json())
-      .then((data) => setExhibitions(data.items || []))
+      .then((data) => setExhibitionsList(data.items || []))
       .catch(() => setFormError('Не удалось загрузить список выставок.'));
   }, []);
 
