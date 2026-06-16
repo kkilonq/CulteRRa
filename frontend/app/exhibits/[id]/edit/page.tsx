@@ -53,7 +53,7 @@ export default function EditExhibitPage() {
       return setFormError('Название и мастер обязательны для заполнения');
     }
 
-    typescript    try {
+     try {
       const BASE_URL = 'https://culterra-back-kkilonq.amvera.io';
       const response = await fetch(`${BASE_URL}/api/exhibit/${params.id}`, {
         method: 'PATCH',
