@@ -44,7 +44,7 @@ export default function EditExhibitionPage() {
       });
 
       if (response.ok) {
-        router.push(`/exhibition/${params.id}`);
+        router.push(`/exhibitions/${params.id}`);
       } else {
         const errData = await response.json();
         setError(errData.error || 'Ошибка при сохранении изменений.');
