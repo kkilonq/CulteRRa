@@ -20,27 +20,29 @@ export default function EditExhibitPage() {
   const [formError, setFormError] = useState('');
   const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    fetch('http://localhost:4000/api/exhibition?limit=100')
-      .then((res) => res.json())
-      .then((resData) => {
-        if (resData && resData.items) {
-          setExhibitionsList(resData.items);
-        }
-      })
-      .catch(() => setFormError('Не удалось загрузить списки выставок'));
+ const BASE_URL = 'https://culterra-back-kkilonq.amvera.io';
 
-    if (params?.id) {
-      fetch(`http://localhost:4000/api/exhibit/${params.id}`)
-        .then((res) => res.json())
-        .then((data) => {
-          setTitle(data.title);
-          setAuthor(data.author);
-          setCreationYear(data.creationYear ? String(data.creationYear) : '');
-          setSelectedExhibitionId(data.exhibitionId);
-        })
-        .catch(() => setFormError('Не удалось загрузить данные экспоната'));
-    }
+  useEffect(() => {
+    fetch(`${BASE_URL}/api/exhibition?limit=100`)
+      .then((res) => res.json())
+      .then((data) => setExhibitions(data.items || []))
+      .catch(() => setFormError('Не удалось загрузить список выставок.'));
+  }, []);
+
+  useEffect(() => {
+    if (!params?.id) return;
+    fetch(`${BASE_URL}/api/exhibit/${params.id}`)
+      .then((res) => {
+        if (!res.ok) throw new Error();
+        return res.json();
+      })
+      .then((data) => {
+        setTitle(data.title);
+        setAuthor(data.author);
+        setCreationYear(data.creationYear ? data.creationYear.toString() : '');
+        setSelectedExhibitionId(data.exhibitionId);
+      })
+      .catch(() => setFormError('Не удалось загрузить данные экспоната'));
   }, [params?.id]);
 
   const handleSubmit = async (e: React.FormEvent) => {
