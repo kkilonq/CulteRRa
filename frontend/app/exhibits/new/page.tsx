@@ -59,14 +59,14 @@ export default function NewExhibitPage() {
       if (response.ok) {
         router.push('/exhibits');
       } else {
-        setFormError('Ошибка валидации данных. Проверьте правильность полей.');
+        const errData = await response.json();
+        setFormError(errData.error || 'Ошибка при сохранении данных.');
       }
     } catch {
-      setFormError('Ошибка соединения с сервером');
+      setFormError('Не удалось связаться с сервером.');
     } finally {
       setLoading(false);
     }
-  };
   
   return (
     <div className="space-y-6 max-w-md mx-auto">
