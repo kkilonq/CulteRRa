@@ -15,7 +15,7 @@ export default function EditExhibitionPage() {
 
   useEffect(() => {
     if (!params?.id) return;
-    fetch(`https://culterra-back-kkilonq.amvera.io/api/exhibit/${params.id}`)
+    fetch(`https://culterra-back-kkilonq.amvera.io/api/exhibitions/${params.id}`)
       .then((res) => res.json())
       .then((data) => {
         setTitle(data.title);
