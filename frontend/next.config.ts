@@ -1,6 +1,4 @@
-import type { NextConfig } from "next";
-
-сonst nextConfig = {
+module.exports = {
   typescript: {
     ignoreBuildErrors: true,
   },
@@ -8,5 +6,3 @@ import type { NextConfig } from "next";
     ignoreDuringBuilds: true,
   },
 };
-
-export default nextConfig;
