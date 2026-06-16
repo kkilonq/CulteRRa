@@ -15,6 +15,6 @@ seedDatabase();
 app.use('/api/exhibition', exhibitionRoutes);
 app.use('/api/exhibit', exhibitRoutes);
 
-app.listen(PORT, () => {
+app.listen(PORT,'0.0.0.0', () => {
   console.log(`[server]: Бэкенд запущен на http://localhost:${PORT}`);
 });
