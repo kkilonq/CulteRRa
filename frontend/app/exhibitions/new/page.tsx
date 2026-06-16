@@ -12,13 +12,14 @@ export default function NewExhibitionPage() {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
     setLoading(true);
 
     try {
-      const response = await fetch('http://localhost:4000/api/exhibition', {
+       const BASE_URL = 'https://culterra-back-kkilonq.amvera.io';
+      const response = await fetch(`${BASE_URL}/api/exhibition`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -41,6 +42,7 @@ export default function NewExhibitionPage() {
       setLoading(false);
     }
   };
+
 
   return (
     <div className="space-y-6 max-w-md mx-auto">
