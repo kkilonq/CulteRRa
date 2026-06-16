@@ -16,33 +16,36 @@ export default function ExhibitionsPage() {
   const [page, setPage] = useState(1);
   const [error, setError] = useState('');
 
-  const loadData = () => {
-    fetch(`http://localhost:4000/api/exhibition?page=${page}&limit=3&q=${search}`)
-      .then((res) => res.json())
-      .then((data) => setData(data))
-      .catch(() => setError('Ошибка загрузки данных'));
-  };
+  const BASE_URL = https://kkilonq-culterra.hf.space';
 
-  useEffect(() => {
-    const delayDebounce = setTimeout(() => {
-      loadData();
-    }, 300);
-    return () => clearTimeout(delayDebounce);
-  }, [search, page]);
+const loadData = () => {
+  fetch(`${BASE_URL}/api/exhibition?page=${page}&limit=3&q=${search}`)
+    .then((res) => res.json())
+    .then((data) => setData(data))
+    .catch(() => setError('Ошибка загрузки данных'));
+};
 
-  const handleDelete = async (id: string) => {
-    if (!confirm('Вы уверены, что хотите безвозвратно удалить эту выставку?')) return;
-    
-    const response = await fetch(`http://localhost:4000/api/exhibition/${id}`, {
-      method: 'DELETE',
-    });
+useEffect(() => {
+  const delayDebounce = setTimeout(() => {
+    loadData();
+  }, 300);
+  return () => clearTimeout(delayDebounce);
+}, [search, page]);
 
-    if (response.ok) {
-      loadData();
-    } else {
-      alert('Не удалось удалить выставку');
-    }
-  };
+const handleDelete = async (id: string) => {
+  if (!confirm('Вы уверены, что хотите безвозвратно удалить эту выставку?')) return;
+  
+  const response = await fetch(`${BASE_URL}/api/exhibition/${id}`, {
+    method: 'DELETE',
+  });
+
+  if (response.ok) {
+    loadData();
+  } else {
+    alert('Не удалось удалить выставку');
+  }
+};
+
 
   if (!data) return <div className="text-center py-24 text-stone-400 font-['Cormorant_Garamond',serif] italic text-xl">Загрузка экспозиции...</div>;
   
