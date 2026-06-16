@@ -1,0 +1,12 @@
+meta:
+  environment: node
+  toolchain:
+    name: npm
+    version: 20
+build:
+  requirements:
+    - backend/package.json
+  commands:
+    - cd backend && npm install
+run:
+  command: cd backend && npm run dev
