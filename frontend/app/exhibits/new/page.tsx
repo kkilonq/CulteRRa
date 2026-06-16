@@ -43,7 +43,8 @@ export default function NewExhibitPage() {
     }
 
     try {
-      const response = await fetch('http://localhost:4000/api/exhibit', {
+      const BASE_URL = 'https://culterra-back-kkilonq.amvera.io';
+      const response = await fetch(`${BASE_URL}/api/exhibit`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
