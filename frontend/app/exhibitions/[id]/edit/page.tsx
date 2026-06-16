@@ -32,7 +32,7 @@ export default function EditExhibitionPage() {
     setLoading(true);
 
     try {
-      const response = await fetch(`https://culterra-back-kkilonq.amvera.io/api/exhibit/${params.id}`, {
+      const response = await fetch(`https://culterra-back-kkilonq.amvera.io/api/exhibitions/${params.id}`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
