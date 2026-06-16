@@ -32,7 +32,7 @@ export default function EditExhibitionPage() {
     setLoading(true);
 
      try {
-      const response = await fetch('https://culterra-back-kkilonq.amvera.io{id}', {
+      const response = await fetch(`https://culterra-back-kkilonq.amvera.io{id}`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -44,17 +44,16 @@ export default function EditExhibitionPage() {
       });
 
       if (response.ok) {
-        router.push('/');
+        router.push(`/exhibitions/${id}`);
       } else {
         const errData = await response.json();
-        setError(errData.error || 'Ошибка обновления.');
+        setError(errData.error || 'Ошибка при сохранении изменений.');
       }
     } catch {
-      setError('Ошибка соединения.');
+      setError('Не удалось связаться с сервером.');
     } finally {
       setLoading(false);
     }
-  };
 
   return (
     <div className="space-y-6 max-w-md mx-auto">
