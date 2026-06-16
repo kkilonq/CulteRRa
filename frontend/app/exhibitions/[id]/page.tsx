@@ -26,14 +26,14 @@ export default function ExhibitionDetailPage() {
   const [deletingId, setDeletingId] = useState<string | null>(null);
 
   const loadData = () => {
-    if (!params || !params.id) return;
-    fetch(`http://localhost:4000/api/exhibition/${params.id}`)
+    const BASE_URL = 'https://culterra-back-kkilonq.amvera.io';
+    fetch(`${BASE_URL}/api/exhibition/${params?.id}`)
       .then((res) => {
-        if (!res.ok) throw new Error();
+        if (!res.ok) throw new Error('Экспозиция не найдена в архиве галереи.');
         return res.json();
       })
       .then((data) => setExhibition(data))
-      .catch(() => setError(true));
+      .catch((err) => setError(err.message || 'Ошибка при загрузке данных'));
   };
 
   useEffect(() => {
