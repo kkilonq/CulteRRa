@@ -15,8 +15,10 @@ export default function AllExhibitsPage() {
   const [page, setPage] = useState(1);
   const [formError, setFormError] = useState('');
 
-  const loadExhibits = () => {
-    fetch(`http://localhost:4000/api/exhibit?page=${page}&limit=5&q=${search}`)
+ const BASE_URL = 'https://culterra-back-kkilonq.amvera.io';
+  
+ const loadExhibits = () => {
+    fetch(`${BASE_URL}/api/exhibit?page=${page}&limit=5&q=${search}`)
       .then((res) => res.json())
       .then((data) => setData(data))
       .catch(() => setFormError('Ошибка при загрузке реестра экспонатов'));
@@ -32,7 +34,7 @@ export default function AllExhibitsPage() {
   const handleDelete = async (id: string) => {
     if (!confirm('Исключить данный экспонат из музейного реестра?')) return;
 
-    const response = await fetch(`http://localhost:4000/api/exhibit/${id}`, {
+    const response = await fetch(`${BASE_URL}/api/exhibit/${id}`, {
       method: 'DELETE'
     });
 
