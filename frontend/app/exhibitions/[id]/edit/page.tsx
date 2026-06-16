@@ -15,7 +15,7 @@ export default function EditExhibitionPage() {
 
   useEffect(() => {
     if (!params?.id) return;
-    fetch(`https://culterra-back-kkilonq.amvera.io/api/exhibitions/${params.id}`)
+    fetch(`https://culterra-back-kkilonq.amvera.io/api/exhibition/${params.id}`)
       .then((res) => res.json())
       .then((data) => {
         setTitle(data.title);
@@ -32,7 +32,7 @@ export default function EditExhibitionPage() {
     setLoading(true);
 
     try {
-      const response = await fetch(`https://culterra-back-kkilonq.amvera.io/api/exhibitions/${params.id}`, {
+      const response = await fetch(`https://culterra-back-kkilonq.amvera.io/api/exhibition/${params.id}`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -44,7 +44,7 @@ export default function EditExhibitionPage() {
       });
 
       if (response.ok) {
-        router.push(`/exhibitions/${params.id}`);
+        router.push(`/exhibition/${params.id}`);
       } else {
         const errData = await response.json();
         setError(errData.error || 'Ошибка при сохранении изменений.');
