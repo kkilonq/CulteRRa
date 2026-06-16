@@ -19,21 +19,20 @@ export default function NewExhibitPage() {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-     const BASE_URL = 'https://culterra-back-kkilonq.amvera.io';
+    const BASE_URL = 'https://amvera.io';
     fetch(`${BASE_URL}/api/exhibition?limit=100`)
       .then((res) => {
         if (!res.ok) throw new Error();
         return res.json();
       })
       .then((data) => {
-        setExhibitions(data.items || []);
+        setExhibitionsList(data.items || []);
         if (data.items && data.items.length > 0) {
           setSelectedExhibitionId(data.items[0].id);
         }
       })
       .catch(() => setFormError('Не удалось загрузить список выставок'));
   }, []);
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setFormError('');
