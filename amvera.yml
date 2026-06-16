@@ -1,0 +1,13 @@
+meta:
+  environment: node
+  toolchain:
+    name: npm
+    version: 20
+build:
+  requirements:
+    - frontend/package.json
+  commands:
+    - npm install --prefix frontend
+    - npm run build --prefix frontend
+run:
+  command: npm run start --prefix frontend
