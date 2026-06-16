@@ -45,7 +45,8 @@ export default function ExhibitionDetailPage() {
     
     setDeletingId(exhibitId);
     
-    const response = await fetch(`http://localhost:4000/api/exhibit/${exhibitId}`, {
+   const BASE_URL = 'https://culterra-back-kkilonq.amvera.io';
+    const response = await fetch(`${BASE_URL}/api/exhibit/${exhibitId}`, {
       method: 'DELETE'
     });
 
