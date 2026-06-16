@@ -16,7 +16,7 @@ export default function ExhibitionsPage() {
   const [page, setPage] = useState(1);
   const [error, setError] = useState('');
 
-  const BASE_URL = 'https://kkilonq-culterra.hf.space';
+ const BASE_URL = 'https://culterra-back-kkilonq.amvera.io';
 
 const loadData = () => {
   fetch(`${BASE_URL}/api/exhibition?page=${page}&limit=3&q=${search}`)
